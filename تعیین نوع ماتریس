@@ -1,0 +1,50 @@
+#include <iostream>
+
+using namespace std;
+
+const int maxCol = 10;
+
+// تابع تعیین نوع ماتریس (بالا مثلثی، پایین مثلثی یا هیچ‌کدام)
+string checkMatrixType(const int matrix[][maxCol], int size) {
+    bool isUpper = true, isLower = true;
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (i > j && matrix[i][j] != 0) // اگر مقدار زیر قطر اصلی صفر نباشد، بالا مثلثی نیست
+                isUpper = false;
+            if (i < j && matrix[i][j] != 0) // اگر مقدار بالای قطر اصلی صفر نباشد، پایین مثلثی نیست
+                isLower = false;
+        }
+    }
+
+    if (isUpper && isLower)
+        return "Diagonal (Both Upper & Lower)";
+    else if (isUpper)
+        return "Upper Triangular";
+    else if (isLower)
+        return "Lower Triangular";
+    else
+        return "None";
+}
+
+// تابع چاپ ماتریس
+void printMatrix(const int matrix[][maxCol], int row, int col) {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++)
+            cout << matrix[i][j] << " ";
+        cout << "\n";
+    }
+}
+
+int main() {
+    int matrix[3][maxCol] = { {1, 2, 3}, {0, 4, 5}, {0, 0, 6} };
+    
+    cout << "Matrix is:\n";
+    printMatrix(matrix, 3, 3);
+
+    string matrixType = checkMatrixType(matrix, 3);
+
+    cout << "\nMatrix Type: " << matrixType << "\n";
+
+    return 0;
+}
