@@ -1,0 +1,36 @@
+#include <iostream>
+
+using namespace std;
+
+const int maxCol = 10;
+
+// تابع محاسبه مجموع عناصر قطر اصلی
+int sumMainDiagonal(const int matrix[][maxCol], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += matrix[i][i]; // جمع کردن عناصر روی قطر اصلی
+    }
+    return sum;
+}
+
+// تابع چاپ ماتریس
+void printMatrix(const int matrix[][maxCol], int row, int col) {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++)
+            cout << matrix[i][j] << " ";
+        cout << "\n";
+    }
+}
+
+int main() {
+    int matrix[3][maxCol] = { {7, 3, 2}, {-2, 6, 1}, {4, -1, 5} };
+    
+    cout << "Matrix is:\n";
+    printMatrix(matrix, 3, 3);
+
+    int sum = sumMainDiagonal(matrix, 3);
+
+    cout << "\nSum of main diagonal: " << sum << "\n";
+
+    return 0;
+}
