@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+
+const int maxCol = 10;
+
+// تابع محاسبه مجموع عناصر هر سطر
+void sumRows(const int matrix[][maxCol], int row, int col, int sumArray[]) {
+    for (int i = 0; i < row; i++) {
+        sumArray[i] = 0; // مقدار اولیه صفر
+        for (int j = 0; j < col; j++) {
+            sumArray[i] += matrix[i][j];
+        }
+    }
+}
+
+// تابع چاپ ماتریس
+void printMatrix(const int matrix[][maxCol], int row, int col) {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++)
+            cout << matrix[i][j] << " ";
+        cout << "\n";
+    }
+}
+
+int main() {
+    int matrix[3][maxCol] = { {7, 3, 2}, {-2, 6, 1}, {4, -1, 5} };
+    
+    cout << "Matrix is:\n";
+    printMatrix(matrix, 3, 3);
+
+    int sumArray[3]; // آرایه برای نگه‌داری مجموع هر سطر
+    sumRows(matrix, 3, 3, sumArray);
+
+    cout << "\nSum of each row:\n";
+    for (int i = 0; i < 3; i++) {
+        cout << "Row " << i << ": " << sumArray[i] << "\n";
+    }
+
+    return 0;
+}
