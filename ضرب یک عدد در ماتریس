@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+const int maxCol = 10;
+
+// تابع ضرب عدد در ماتریس
+void multiplyByScalar(const int A[][maxCol], int scalar, int rows, int cols, int C[][maxCol]) {
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            C[i][j] = A[i][j] * scalar;
+}
+
+// تابع چاپ ماتریس
+void printMatrix(const int matrix[][maxCol], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++)
+            cout << matrix[i][j] << " ";
+        cout << "\n";
+    }
+}
+
+int main() {
+    int matrix[2][maxCol] = { {7, 3, 2}, {-2, 6, 1} };
+    int scalar = 3; // عددی که در ماتریس ضرب می‌شود
+    int result[2][maxCol];
+
+    multiplyByScalar(matrix, scalar, 2, 3, result);
+
+    cout << "ماتریس اصلی:\n";
+    printMatrix(matrix, 2, 3);
+    
+    cout << "\nعدد ضرب‌شونده: " << scalar << "\n";
+
+    cout << "\nنتیجه‌ی ضرب:\n";
+    printMatrix(result, 2, 3);
+
+    return 0;
+}
