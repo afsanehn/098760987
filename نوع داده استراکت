@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+struct BankAccount {
+    string accountNumber;
+    string accountHolder;
+    double balance;
+};
+
+int main() {
+    BankAccount account1 = {"1234567890", "Ali Reza", 5000.75};
+
+    cout << "Account Number: " << account1.accountNumber << endl;
+    cout << "Account Holder: " << account1.accountHolder << endl;
+    cout << "Balance: " << account1.balance << " USD" << endl;
+
+    return 0;
+}
