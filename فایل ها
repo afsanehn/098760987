@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string passwords[10]; // Store up to 10 passwords
+    int count = 0; // Number of stored passwords
+    string password;
+    
+    ifstream file("Pass");
+    
+    if (file) { // If the file exists, read passwords from it
+        while (count < 10 && getline(file, passwords[count])) {
+            count++;
+        }
+        file.close();
+    } else { // If the file does not exist, create it with default passwords
+        ofstream newFile("Pass");
+        newFile << "securePass2024\nmySecretKey\nlogin@123\n";
+        newFile.close();
+        passwords[0] = "securePass2024";
+        passwords[1] = "mySecretKey";
+        passwords[2] = "@123";
+        count = 3;
+    }
+
+    for (int attempt = 1; attempt <= 5; attempt++) {
+        cout << "Enter your password: ";
+        cin >> password;
+
+        for (int i = 0; i < count; i++) {
+            if (password == passwords[i]) {
+                cout << "Login successful!" << endl;
+                return 0;
+            }
+        }
+
+        cout << "Incorrect password! ";
+        if (attempt < 5) {
+            cout << "You have " << 5 - attempt << " attempts left." << endl;
+        } else {
+            cout << "Program locked!" << endl;
+        }
+    }
+
+    return 0;
+}
