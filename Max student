@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Tedad daneshjooyan ra vared konid: ";
+    cin >> n;
+
+    int* ids = new int[n];
+    float* gpas = new float[n];
+
+    float sum = 0;
+
+    for (int i = 0; i < n; i++) {
+        cout << "Shomare daneshjooei daneshjoo-ye " << i + 1 << ": ";
+        cin >> ids[i];
+        cout << "Moadel-e daneshjoo-ye " << i + 1 << ": ";
+        cin >> gpas[i];
+        sum += gpas[i];
+    }
+
+    float avg = sum / n;
+
+    cout << "\nShomare daneshjooyani ke moadel-eshan az miyangin bishtar ast:\n";
+    for (int i = 0; i < n; i++) {
+        if (gpas[i] > avg) {
+            cout << ids[i] << endl;
+        }
+    }
+
+    delete[] ids;
+    delete[] gpas;
+
+    return 0;
+}
