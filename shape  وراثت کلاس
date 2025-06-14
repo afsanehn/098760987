@@ -1,40 +1,49 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
-class Shape{
-protected:
-    string color;
-    string pattern;
+
+class Shape {
+protected: string name;
 public:
-    Shape(string c,string p)
-    {
-        this->color=c;
-        this->pattern=p;
-    }
-    void Display()
-    {
-        cout<<"the color of shape= "<<color<<" the pattern="<<pattern<<endl;
+    Shape(string n) : name(n) {}
+    virtual double area() = 0;
+    virtual double perimeter() = 0;
+    void display() {
+        cout << "Shape: " << name << "\nArea: " << area() 
+             << "\nPerimeter: " << perimeter() << endl;
     }
 };
 
-class Circle:public Shape{
-private:
-    float radius;
+class Rectangle : public Shape {
+    double width, height;
 public:
-    Circle(float r,string c1, string p1):Shape(c1,p1){
-        this->radius=r;
-    }
-//    void Display() //Ctrl+Shift+C
-//    {
-//        cout<<"the radius of circle= "<<this->radius<<"the color = "<<color<<" the pattern="<<pattern<<endl;
-//    }
+    Rectangle(double w, double h) : Shape("Rectangle"), width(w), height(h) {}
+    double area() override { return width * height; }
+    double perimeter() override { return 2 * (width + height); }
 };
 
-int main()
-{
-    Shape s1("Blue","dotdot");
-    Circle c1(2.5,"Yellow","LineLine");
-    s1.Display();
-    c1.Display();
+class Circle : public Shape {
+    double radius;
+public: 
+    Circle(double r) : Shape("Circle"), radius(r) {}
+    double area() override { return M_PI * radius * radius; }
+    double perimeter() override { return 2 * M_PI * radius; }
+};
 
+class Triangle : public Shape {
+    double side1, side2, side3;
+public:
+    Triangle(double s1, double s2, double s3) : Shape("Triangle"), side1(s1), side2(s2), side3(s3) {}
+    double area() override {
+        double s = perimeter() / 2;
+        return sqrt(s * (s-side1) * (s-side2) * (s-side3));
+    }
+    double perimeter() override { return side1 + side2 + side3; }
+};
+
+int main() {
+    Rectangle(5, 3).display();
+    Circle(4).display();
+    Triangle(3, 4, 5).display();
     return 0;
 }
