@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+void displayMenu() {
+    cout << "\n======== Main Menu ========\n";
+    cout << "1. Option One\n";
+    cout << "2. Option Two\n";
+    cout << "3. Option Three\n";
+    cout << "4. Exit\n";
+    cout << "==========================\n";
+    cout << "Please enter your choice: ";
+}
+
+int main() {
+    int choice;
+    
+    do {
+        displayMenu();
+        cin >> choice;
+        
+        switch(choice) {
+            case 1:
+                cout << "You selected Option One.\n";
+                // Code for option one goes here
+                break;
+            case 2:
+                cout << "You selected Option Two.\n";
+                // Code for option two goes here
+                break;
+            case 3:
+                cout << "You selected Option Three.\n";
+                // Code for option three goes here
+                break;
+            case 4:
+                cout << "Exiting program...\n";
+                break;
+            default:
+                cout << "Invalid choice! Please enter a number between 1-4.\n";
+        }
+    } while(choice != 4);
+    
+    return 0;
+}
